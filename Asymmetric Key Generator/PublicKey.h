@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <Windows.h>
 
 int pub(HCRYPTKEY hKey) {
@@ -14,8 +13,7 @@ int pub(HCRYPTKEY hKey) {
 	BYTE* keyData = (BYTE*)malloc(keyLen);
 	if (!CryptExportKey(hKey, NULL, PUBLICKEYBLOB, 0, keyData, &keyLen)) {
 		printf("\n(!) Error exporting key - %i", GetLastError());
-	}
-	else {
+	} else {
 		printf("\n(+) Succesfully exported key");
 	}
 	char keyHeader[] = "keyHex {";
@@ -41,8 +39,7 @@ int pub(HCRYPTKEY hKey) {
 	HANDLE fileHandle = CreateFileA(filePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (fileHandle == NULL) {
 		printf("\n(!) Failed to create file, Error: %lu", GetLastError());
-	}
-	else {
+	} else {
 		printf("\n(+) Succesfully created file %s", filePath);
 	}
 
