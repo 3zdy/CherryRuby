@@ -7,7 +7,7 @@ int priv(HCRYPTKEY hKey) {
 	if (!CryptExportKey(hKey, NULL, PRIVATEKEYBLOB, 0, NULL, &keyLenCheck)) {
 		printf("\n(!) Error getting key size - 0x%x", GetLastError());
 	} else {
-		printf("\n(+) Succesfully got key size - %i", keyLenCheck);
+		printf("\n(+) Succesfully got key size", keyLenCheck);
 	}
 
 	DWORD keyLen = keyLenCheck + 1;
@@ -47,7 +47,7 @@ int priv(HCRYPTKEY hKey) {
 	if (fileHandle != NULL) {
 		DWORD writtenBytes = hexedKeySize;
 	BOOL writeReturn = WriteFile(fileHandle, hexedKey, strlen(hexedKey), NULL, NULL);
-		printf("\n(+) Succesfully put content in created file %s", filePath);
+		printf("\n(+) Succesfully put content in created file", filePath);
 	} else {
 		printf("\n(!) Failed put content in created file %s, Error: %lu", filePath, GetLastError());
 	}
@@ -55,7 +55,6 @@ int priv(HCRYPTKEY hKey) {
 	free(keyData);
 	free(hexedKey);
 	CloseHandle(fileHandle);
-
-
+	
 	return 0;
 }
