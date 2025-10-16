@@ -6,8 +6,7 @@ int pub(HCRYPTKEY hKey) {
 	DWORD keyLenCheck = NULL;
 	if (!CryptExportKey(hKey, NULL, PUBLICKEYBLOB, 0, NULL, &keyLenCheck)) {
 		printf("\n(!) Error getting key size - 0x%x", GetLastError());
-	}
-	else {
+	} else {
 		printf("\n(+) Succesfully got key size - %i", keyLenCheck);
 	}
 
