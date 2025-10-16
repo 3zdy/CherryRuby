@@ -51,8 +51,7 @@ int pub(HCRYPTKEY hKey) {
 		DWORD writtenBytes = hexedKeySize;
 		BOOL writeReturn = WriteFile(fileHandle, hexedKey, strlen(hexedKey), NULL, NULL);
 		printf("\n(+) Succesfully put content in created file %s", filePath);
-	}
-	else {
+	} else {
 		printf("\n(!) Failed put content in created file %s, Error: %lu", filePath, GetLastError());
 	}
 
