@@ -17,7 +17,7 @@ int priv(HCRYPTKEY hKey) {
 	} else {
 		printf("\n(+) Succesfully exported key");
 	}
-	char keyHeader[] = "keyHex {";
+	char keyHeader[] = "keyHex[] = {";
 	int hexedKeySize = keyLen * 12 + sizeof(keyHeader) + 1;
 	char* hexedKey = (char*)malloc(hexedKeySize);
 	strcpy_s(hexedKey, hexedKeySize, keyHeader);
