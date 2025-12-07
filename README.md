@@ -12,7 +12,7 @@ The key generator will generate 2 files, a key pair (wich you keep to yourself) 
 - (OPTIONAL) Change directories to attack (reffer to "Introduction", 4th line)
 - Compile and send to target
 
-# TO DO:
+# To do:
 
 - Fully test in VM
 - Change the name of encrypted files for ease of use (for example adding ".ENCR")
