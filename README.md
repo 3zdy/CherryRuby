@@ -1,7 +1,9 @@
 # Introduction
-A simple ransomware that recursively encrypts directories with AES, afterwards encrypts the generated AES key with a pre planted RSA public key and writes that encrypted key to the Desktop.
+A simple ransomware that recursively encrypts directories with AES,
+afterwards encrypts the generated AES key with a pre planted RSA public key and writes that encrypted key to the Desktop.
 This key encrypts key method makes it inecessary for exfiltration of keys and makes it more securte for the attacker/red teamer.
-By default it will attack "Desktop", "Documents", "Pictures" and "Downloads" but this can be easily edited by adding files to the variable "targetDirs" in main.c
+By default it will attack "Desktop", "Documents", "Pictures" and "Downloads", 
+but this can be easily edited by adding files to the variable "targetDirs" in main.c
 
 
 # Usage
