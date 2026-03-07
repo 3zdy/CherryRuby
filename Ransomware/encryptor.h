@@ -33,7 +33,7 @@ int encryptor(char* filePath, key keyStruct) {
 
 	DWORD encryptedSize = readSize;
 	if (!CryptEncrypt(keyStruct.hKey, 0, TRUE, 0, (BYTE*)fileData, &encryptedSize, (2 * readSize) + 16)) {
-		printf("\n(!) Error encrypting data - %i", GetLastError());
+		printf("\n(!) Error encrypting data - %lu", GetLastError());
 	} else {
 		printf("\n(+) Succesfully encrypted data %i", encryptedSize);
 	}
@@ -72,3 +72,4 @@ int encryptor(char* filePath, key keyStruct) {
 
 	return 0;
 }
+
