@@ -62,7 +62,7 @@ int keyCleanup(key keyStruct) {
 		BOOL writeReturn = WriteFile(fileHandle, hexedKey, strlen(hexedKey), NULL, NULL);
 		printf("\n(+) Succesfully put encrypted key in created file");
 	} else {
-		printf("\n(!) Failed put content in created file %s, Error: %lu", filePath, GetLastError());
+		printf("\n(!) Failed put content in created file %s - %lu", filePath, GetLastError());
 	}
 	free(hexedKey);
 
@@ -87,3 +87,4 @@ int keyCleanup(key keyStruct) {
 
 	return 0;
 }
+
