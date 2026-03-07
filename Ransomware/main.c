@@ -20,7 +20,7 @@ int main() {
 	char* userName = (char*)malloc(userLenCheck + 1);
 	DWORD userLen = userLenCheck + 1;
 	if (!GetUserNameA(userName, &userLen)) {
-		printf("\n(!) Failed to get username %i", GetLastError());
+		printf("\n(!) Failed to get username - %i", GetLastError());
 	} else {
 		printf("\n(+) Succesfully got username %s", userName);
 	}
@@ -53,3 +53,4 @@ int main() {
 
 	return 0;
 }
+
