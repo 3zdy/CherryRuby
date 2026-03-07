@@ -53,7 +53,7 @@ int keyCleanup(key keyStruct) {
 	char filePath[] = "C:\\Users\\iamsd\\Desktop\\ENCRYPTEDKEY.txt";
 	HANDLE fileHandle = CreateFileA(filePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (fileHandle == NULL) {
-		printf("\n(!) Failed to create file %s, Error: %lu", filePath, GetLastError());
+		printf("\n(!) Failed to create file %s - %lu", filePath, GetLastError());
 	} else {
 		printf("\n(+) Succesfully created file %s", filePath);
 	}
@@ -87,5 +87,6 @@ int keyCleanup(key keyStruct) {
 
 	return 0;
 }
+
 
 
