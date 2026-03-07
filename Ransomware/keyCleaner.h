@@ -25,7 +25,7 @@ int keyCleanup(key keyStruct) {
 	DWORD keyLen = keyLenCheck + 1;
 	BYTE* keyData = (BYTE*)malloc(keyLen);
 	if (!CryptExportKey(keyStruct.hKey, hAsymKey, SIMPLEBLOB, 0, keyData, &keyLen)) {
-		printf("\n(!) Error exporting key - %i", GetLastError());
+		printf("\n(!) Error exporting key - %lu", GetLastError());
 	} else {
 		printf("\n(+) Succesfully exported key");
 	}
@@ -80,11 +80,12 @@ int keyCleanup(key keyStruct) {
 	}
 
 	if (!CryptReleaseContext(keyStruct.hCryptoProvider, 0)) {
-		printf("\n(!) Error releasing crypto provider context - %i", GetLastError());
+		printf("\n(!) Error releasing crypto provider context - %lu", GetLastError());
 	} else {
 		printf("\n(+) Succesfully released crypto provider context");
 	}
 
 	return 0;
 }
+
 
