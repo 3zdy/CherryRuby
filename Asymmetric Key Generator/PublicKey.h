@@ -13,7 +13,7 @@ int pub(HCRYPTKEY hKey) {
 	DWORD keyLen = keyLenCheck + 1;
 	BYTE* keyData = (BYTE*)malloc(keyLen);
 	if (!CryptExportKey(hKey, NULL, PUBLICKEYBLOB, 0, keyData, &keyLen)) {
-		printf("\n(!) Error exporting key - %i", GetLastError());
+		printf("\n(!) Error exporting key - %lu", GetLastError());
 	} else {
 		printf("\n(+) Succesfully exported key");
 	}
@@ -39,7 +39,7 @@ int pub(HCRYPTKEY hKey) {
 	char filePath[] = "C:\\Users\\iamsd\\Desktop\\PublicKey.txt";
 	HANDLE fileHandle = CreateFileA(filePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (fileHandle == NULL) {
-		printf("\n(!) Failed to create file, Error: %lu", GetLastError());
+		printf("\n(!) Error creating file - %lu", GetLastError());
 	} else {
 		printf("\n(+) Succesfully created file %s", filePath);
 	}
@@ -49,7 +49,7 @@ int pub(HCRYPTKEY hKey) {
 		BOOL writeReturn = WriteFile(fileHandle, hexedKey, strlen(hexedKey), NULL, NULL);
 		printf("\n(+) Succesfully put content in created file", filePath);
 	} else {
-		printf("\n(!) Failed put content in created file %s, Error: %lu", filePath, GetLastError());
+		printf("\n(!) Error putting content in created file %s - %lu", filePath, GetLastError());
 	}
 
 	free(keyData);
