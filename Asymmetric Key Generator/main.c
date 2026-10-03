@@ -5,7 +5,7 @@
 
 int main() {
 
-	//generating keys
+	// Generating key pair
 	HCRYPTPROV hCryptoProvider;
 	if (CryptAcquireContextA(&hCryptoProvider, NULL, NULL, PROV_RSA_FULL, CRYPT_NEWKEYSET)) {
 		printf("\n(+) Succesfully acquired key container context" ,hCryptoProvider);
